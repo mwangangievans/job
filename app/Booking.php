@@ -12,7 +12,8 @@ class Booking extends Model
     'gender',
     'age',
     'check_in',
-    'check_out'];
+    'check_out',
+'nationality'];
     public function userBooking(){
         return $this->belongsTo('app\User','user_id');
     }

@@ -127,10 +127,10 @@
                                            letter-spacing: 1.2px;
                                        }
                                        
-                                       .qoute {
-                                           font-style: italic;
+                                       /* .qoute {
+                                           font: weight 800px;;
                                            color: rgb(0, 255, 85);
-                                       }
+                                       } */
                                        
                                       .image {
                                            border-radius: 50%;
@@ -381,7 +381,10 @@ main {
   padding: 1rem;
   background: #2b2b2b;
   color: #fff;
-  height: 60px; }
+  height: 60px;
+width: 100%;
+margin-bottom: 0px; }
+  
 
 @media screen and (min-width: 1171px) {
   .projects {
@@ -434,8 +437,42 @@ main {
   .projects {
     grid-template-columns: 1fr; } }
 .mission{    background: rgba(8, 236, 19, 0.5); 
-
+margin-top: 10px;
     width: 100%;}
     #mission{
 font-weight: 800;    }
 #passage{font-weight: 500;}
+.jossy1{ 
+   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  /* padding: 20px 20px; */
+  transition: all 0.3s ease-in-out;}
+  .jossy{
+    /* border-radius: 50%; */
+    height: 200px;
+    width: 200px;
+    margin-left: 0px;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-top-right-radius: 50%;
+ }
+  .jossy2{    
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-top-right-radius: 50%;
+    background-color: green;
+    height: 200px;
+    width: 200px;
+    z-index: -2;
+}
+.category{display: flex;
+align-items: center;
+justify-content: center;
+font-weight: 800;
+color: green;}
+.lion{  z-index: 2;
+  margin-top: -70px;
+  color: #eece1a;
+}

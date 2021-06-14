@@ -10,8 +10,11 @@ class AnimalController extends Controller
 {
     public function index()
     { 
-        // return (auth()->user()->id);
              $categories = Category::all();
+             $animals = Animal::all();
+
+
+
 
         $name = auth()->user()->name;
 

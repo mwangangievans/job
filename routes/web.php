@@ -1,7 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Animal;
+use App\Category;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,13 +15,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('wel');
+
+
+    //          $categories = Category::all();
+    //          $animals = Animal::all();
+
+
+    //      $animals = Animal::orderby('id', 'desc')->paginate(10);
+    // return view('wel', compact('animals','categories',  $categories, $animals));
+
+     return view('wel');
 });
 
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index');
-//
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('/costs','CostController');
+
+
 Route::resource('/bookings','BookingController');
 
 Route::resource('/users', 'UserController');

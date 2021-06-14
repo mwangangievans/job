@@ -20,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($categories as $category)
+                @foreach($categories as $category)
                 <tr>
                  <td><h4>{{ $category->id }}</h4></td> 
 
@@ -29,6 +29,7 @@
 
                 <td>  
                     <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>
+                    
                     {!! Form::open(['method' => 'DELETE', 'route' => ['categories.destroy', $category->id] ]) !!}
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger'] ) !!}
                     {!! Form::close() !!}

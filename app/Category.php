@@ -10,6 +10,6 @@ class Category extends Model
 		'name'];
       public function Animal()
     {
-        return $this->hasMany(Animal::class);
+        return $this->hasMany('App\Animal');
     }
 }

@@ -7,13 +7,12 @@
 </div>
      @if(count($animals)> 0)
 
-      {{-- @foreach($products->chunk(3) as $items) --}}
               <div class="row">
                 @foreach ( $animals as $animal)
             <div class="col-md-4">
               <h1>
                 <div class="image-container">
-            <img src="/storage/image/{{$animal->image}}" alt="Animal picture" class="centered-image">
+            <img src="/storage/image/{{$animal->image}}" alt="Animal picture" class="centered-image"/>
             
                           </div>
                           <h5>
@@ -33,6 +32,3 @@
      @endif
   
 @endsection
-{{-- <div class="image-container">
-  <img src="https://24seven.co.ke/uploads/sliders/1550944223ecommmerce.jpg" alt="24seven Developers slider" class="centered-image">
-</div> --}}

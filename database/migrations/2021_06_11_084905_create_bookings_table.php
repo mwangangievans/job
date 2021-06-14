@@ -18,9 +18,13 @@ class CreateBookingsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('phone');
             $table->enum('gender', ['male', 'female', 'other']);
+            $table->enum('nationality', ['foreigner', 'local']);
             $table->string('age');
             $table->date('check_in');
             $table->date('check_out');
+            $table->string('Duration');
+
+
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

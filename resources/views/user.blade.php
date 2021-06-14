@@ -8,12 +8,12 @@
   <h3 class="info">recent bookings </h3>
   
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#BookVisit">
-  Book a visit
+<button type="button" class="btn btn-primary non_printable" data-toggle="modal" data-target="#BookVisit">
+  <h4 class="non_printable">Book a visit</h4>
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="BookVisit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade non_printable" id="BookVisit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -51,7 +51,7 @@
                             </label>
                             <input  type="text" name="age" id="age" class="form-control" placeholder="enter age">
                     </div>
-                     <div class="form-group">
+                <div class="form-group">
                     <div class="md:w-1/3">
                         <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
                             Gender
@@ -75,7 +75,28 @@
                     
                     </div>
                 </div>
-            <button class="btn btn-primary">Save</button>
+                <div class="form-group">
+                    <div class="md:w-1/3">
+                        <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                            Nationality
+                        </label>
+                    </div>
+                    <div class="md:w-2/3">
+                        <div class="flex flex-row items-center">
+                            <label class="block text-gray-500 font-bold">
+                                <input name="nationality" class="mr-2 leading-tight" type="radio" value="foreigner">
+                                <span class="text-sm">Foreigner</span>
+                            </label>
+                            <label class="ml-4 block text-gray-500 font-bold">
+                                <input name="nationality" class="mr-2 leading-tight" type="radio" value="local">
+                                <span class="text-sm">Local</span>
+                            </label>
+                           
+                        </div>
+                    
+                    </div>
+                </div>
+            <button class="btn btn-primary non_printable">Save</button>
                     </div>
     </form>
             </div>
@@ -83,7 +104,7 @@
     </div>
   </div>
 </div>
-        <table id="example" class="table table-bordered table-striped">
+        <table id="example" class="table table-bordered table-striped ">
             <thead>
                 <tr class="wildlifeme">
                     <th>User Name</th>
@@ -92,8 +113,9 @@
                     <th >phone</th>
                     <th >Age</th>
                     <th >Gender</th>
+                    <th >Nationality</th>
                      <th >Duration in days</th>
-                    <th >Action</th>
+                   <th class="non_printable">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -105,9 +127,10 @@
                             <td>{{$booking->phone }}</td>
                             <td>{{$booking->age}}</td>
                             <td>{{$booking->gender }}</td>
+                            <td>{{$booking->nationality }}</td>
                             <td>{{$booking->Duration }}</td>
-                    <td>
-                         <button type="button" class="btn btn-primary pull-right " data-toggle="modal" data-target="#exampleModal{{$booking->id}}">
+                    <td class="non_printable">
+                         <button type="button" class="btn btn-primary pull-right non_printable" data-toggle="modal" data-target="#exampleModal{{$booking->id}}">
                     Edit
                     </button>
                     <!-- Modal -->
@@ -143,6 +166,12 @@
                                 {{ Form::label('gender', 'Gender') }}
                                 {{ Form::text('gender', null, array('class' => 'form-control')) }}
                             </div>
+                            <div class="form-group">
+                                {{ Form::label('nationality', 'Nationality') }}
+                                {{  Form::select('nationality', [ 'local','foreigner'],null, array('class' => 'form-control')) }}
+                            </div>
+
+
                             {{ Form::submit('Update', array('class' => 'btn btn-primary')) }}
                             {{ Form::close() }}
                         </div>
@@ -150,7 +179,9 @@
                     </div>
                     </div>
                     </div>
-                <a href="{{ route('bookings.destroy', $booking->id) }}" class="btn btn-danger pull-right" style="margin-right: 3px;">Delite</a></td> 
+               {!! Form::open(['method' => 'DELETE', 'route' => ['bookings.destroy', $booking->id] ]) !!}
+                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::close() !!}</td> 
                         </tr>
                     @endforeach
                 @else
@@ -159,6 +190,13 @@
 
         </table>
     </div>
+     
 </div>
+       <div class="pull-right"> <button onclick="printme()" class="btn btn-primary">Print</button></div>
 
+<script>
+    function printme(){
+        window.print();
+    }
+</script>
 @endsection

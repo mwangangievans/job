@@ -3,18 +3,52 @@
 <div class="hero1">
       <div class="container1">
             <div class="animal">
-              <a href=""><img src="https://images.pexels.com/photos/3284299/pexels-photo-3284299.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="lion" class="image"></a>
-              <a href=""><img src="https://images.pexels.com/photos/6436686/pexels-photo-6436686.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="buffalo" class="image"></a>
-            <a href=""><img src="https://images.pexels.com/photos/6947820/pexels-photo-6947820.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" 
-            alt="lion" class="image" ></a>
-             <a href=""><img src="https://images.pexels.com/photos/6551938/pexels-photo-6551938.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="lion"  class="image"></a>
-              <a href="">  <img src="https://images.pexels.com/photos/39857/leopard-leopard-spots-animal-wild-39857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="leopard" class="image" ></a>
+              <a href="#!"><img src="{{url('/image/juda.jpeg')}}" alt="lion" class="image"></a>
+              <a href=""><img src="{{url('/image/dovu.jpeg')}}" alt="buffalo" class="image"></a>
+            <a href=""><img src="{{url('/image/rhino1.jpeg')}}" 
+            alt="rhino" class="image" height="650px" width="940px" ></a>
+
+           
+             <a href=""><img src="{{url('/image/mboo.jpeg')}}" alt="lion"  class="image"></a>
+              <a href="">  <img src="{{url('/image/kikoyo.jpeg')}}" alt="leopard" class="image" ></a>
              </div>
          <div class="five"> <h1>Welcome  To <span class="life">Big-Life-Zoo</span> The Home of the   big <span class="life">5</span></h1>
-        <p class="qoute">“If we can teach people about wildlife, they will be touched. Share my wildlife with me. Because humans want to save things that they love.”</p>
+       
       </div>
        </div>
+</div> 
+<h1 class="category">list of animals available in our zoo</h1>
+<div class="jossy1"> <button class="jossy2"><a href="#!">
+          <img src="{{url('/image/3.jpeg')}}"  alt="Image" class="jossy"/>
+        </a><h1 class="lion">lions</h1></button>
+        <button class="jossy2"><a href="#!">
+          <img src="{{url('/image/4.jpeg')}}"  alt="Image" class="jossy"/>
+        </a><h1 class="lion">Leopards</h1></button>
+        <button class="jossy2"><a href="#!">
+          <img src="{{url('/image/hyena.jpeg')}}"  alt="Image" class="jossy"/>
+        </a><h1 class="lion">hyenas</h1></button>
+        <button class="jossy2"><a href="#!">
+          <img src="{{url('/image/monkey.jpeg')}}"  alt="Image" class="jossy"/>
+        </a><h1 class="lion">Monkeys</h1></button>
+        <button class="jossy2"><a href="#about">
+          <img src="{{url('/image/mboo.jpeg')}}"  alt="Image" class="jossy"/>
+        </a><h1 class="lion">buffalos</h1></button>
+        <button class="jossy2"><a href="#!">
+          <img src="{{url('/image/giraffe.jpeg')}}"  alt="Image" class="jossy"/>
+        </a><h1 class="lion">Giraffes</h1></button>
+         <button class="jossy2"><a href="#!">
+          <img src="{{url('/image/rhino.jpg')}}"  alt="Image" class="jossy"/>
+        </a><h1 class="lion">Rhinos</h1></button> 
+ <button class="jossy2"><a href="#!">
+          <img src="{{url('/image/bird.jpeg')}}"  alt="Image" class="jossy"/>
+        </a><h1 class="lion">Birds</h1></button> 
+          <button class="jossy2"><a href="#!">
+          <img src="{{url('/image/crocodile.jpeg')}}"  alt="Image" class="jossy"/>
+        </a><h1 class="lion">crocodile</h1></button> 
+         
 </div>
+ <!-- <main id="tv"></main> -->
+
 <div class="mission">
  <section class="container content">
      <h1 id="mission">OUR MISSION 
@@ -76,6 +110,7 @@ Big Life’s female rangers        </a>
 
       </p>
     </section>
+    <hr>
 </div>
  <main id="about">
     <h1 class="lg-heading">

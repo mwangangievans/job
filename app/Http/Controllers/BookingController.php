@@ -17,16 +17,27 @@ class BookingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        
-    $user = Auth::user();
-   
+     {
+     $user = Auth::user();
+        if ($user->hasRole('Admin')) {
+
+            $bookings = Booking::all();
+            return view('admin')->with('bookings', $bookings);
+
+        } elseif ($user->hasRole('Staff')) {
+            $bookings = Booking::all();
+            
+            return view('Staff')->with('bookings', $bookings);
+
+        } else {
+
+           $user = Auth::user();
       
-    return view('booking.index')->with('user',$user);
-
-  
-
+    return view('user')->with('user',$user);
+        }
     }
+    
+
 
     /**
      * Show the form for creating a new resource.
@@ -47,7 +58,6 @@ class BookingController extends Controller
      */
     public function store(Request $request )
     {
-    //    dd( Auth::User()->id);
 
          $this->validate($request, [
             // 'user_id'         => 'required|numeric',
@@ -55,7 +65,8 @@ class BookingController extends Controller
             'gender'          => 'required|string|max:255',
             'age'              => 'required|string|max:255',
             'check_in'        => 'required|date',
-            'check_out'       => 'required|date'
+            'check_out'       => 'required|date',
+            'nationality'      => 'required|string|max:255'
 
         ]);
 
@@ -86,6 +97,7 @@ class BookingController extends Controller
         $booking ->age =$request->input('age');
         $booking ->check_in=$request->input('check_in');
         $booking ->check_out=$request->input('check_out');
+        $booking ->nationality =$request->input('nationality');
         $booking-> Duration = $day;
 
                 // return $day;
@@ -130,17 +142,15 @@ class BookingController extends Controller
      */
     public function update(Request $request, $id)
     { 
-        // return $id;
-        //$users = User::where('status', 'VIP')->get();
-        $booking = Booking::where('id', $id)->first(); //where user_id = $id
-        // return $booking;
+        $booking = Booking::where('id', $id)->first(); 
         $this->validate($request, [
             // 'user_id'         => 'required|numeric',
             'phone'           => 'required|string|max:255',
             'gender'          => 'required|string|max:255',
             'age'              => 'required|string|max:255',
             'check_in'        => 'required|date',
-            'check_out'       => 'required|date'
+            'check_out'       => 'required|date',
+            'nationality'        =>'required|string|max:255'
         ]);
 
         // $input = $request->only(['user_id', 'phone', 'gender','age','check_in','check_out']);
@@ -151,6 +161,8 @@ class BookingController extends Controller
         $booking->age = $request->input('age');
         $booking->check_in = $request->input('check_in');
         $booking->check_out = $request->input('check_out');
+        $booking->nationality = $request->input('nationality');
+
         $booking->Duration =  $this->dateDiff($request->input('check_in'),$request->input('check_out'));
         $booking->save();
 
@@ -168,13 +180,12 @@ class BookingController extends Controller
      */
     public function destroy($id)
     { 
-        // return $id;
+        //  return $id;
           $booking = Booking::findOrFail($id);
-        //   return $booking;
+        return $booking;
         $booking->delete();
 
-        //  $booking =  Booking::where('id', $id)->first();
-        // $booking->delete();
+       ;
 
         return redirect()->route('bookings.index')
             ->with('flash_message',

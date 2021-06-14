@@ -106,8 +106,9 @@
                             <td>{{$booking->age}}</td>
                             <td>{{$booking->gender }}</td>
                             <td>{{$booking->Duration }}</td>
-                    <td>
-                         <button type="button" class="btn btn-primary pull-right " data-toggle="modal" data-target="#exampleModal{{$booking->id}}">
+                            <td>
+                   {{-- <td> <a href="{{ route('bookings.edit', $booking->id) }}" class="btn btn-info pull-right" style="margin-right: 3px;">Edit</a> --}}
+                    <button type="button" class="btn btn-primary pull-left " data-toggle="modal" data-target="#exampleModal{{$booking->id}}">
                     Edit
                     </button>
                     <!-- Modal -->
@@ -143,14 +144,32 @@
                                 {{ Form::label('gender', 'Gender') }}
                                 {{ Form::text('gender', null, array('class' => 'form-control')) }}
                             </div>
+
+                    
+
                             {{ Form::submit('Update', array('class' => 'btn btn-primary')) }}
+
                             {{ Form::close() }}
                         </div>
                         </div>
                     </div>
                     </div>
+
+                    {{-- /////delete modal --}}
+                   
+
+                    
                     </div>
-                <a href="{{ route('bookings.destroy', $booking->id) }}" class="btn btn-danger pull-right" style="margin-right: 3px;">Delite</a></td> 
+
+                {{-- <a href="{{ route('bookings.destroy', $booking->id) }}" class="btn btn-danger pull-right" style="margin-right: 3px;">Delite</a></td> --}}
+
+                                    {{-- $diff=date_diff($date3,$date2);
+
+                            $days = substr($diff->format("%R%a "),1); --}}
+                             {!! Form::open(['method' => 'DELETE', 'route' => ['bookings.destroy', $booking->id] ]) !!}
+                    {!! Form::submit('Delete', ['class' => 'btn btn-danger  pull-left']) !!}
+                    {!! Form::close() !!}
+
                         </tr>
                     @endforeach
                 @else

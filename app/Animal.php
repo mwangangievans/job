@@ -14,6 +14,6 @@ class Animal extends Model
     ];
      public function category()
     {
-        return $this->belongTo(Category::class);
+        return $this->belongTo('App\Category');
     }
 }

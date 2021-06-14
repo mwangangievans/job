@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Animal;
 use App\Category;
 use Illuminate\Http\Request;
 
@@ -14,10 +15,18 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        
-        $categories = Category::all();
+//         $animal = Animal::all();
+//         $categories = Category::all();
+   
+//         for($i = 0; $i < count($categories); $i++){
+//   foreach( $categories[$i]->animal as $category )
+//         return $categories;        }
+$categories = Category::all();    
+// $a = Animal::all();
 
-        return view('category.index')->with('categories', $categories);
+
+           
+        return view('category.index')->with('categories',$categories);
     
     }
 
@@ -109,7 +118,9 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         
+        
         $category = Category::findOrFail($id);
+
         $category->delete();
 
         return redirect()->route('categories.index')

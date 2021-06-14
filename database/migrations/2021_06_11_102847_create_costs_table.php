@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDurationToBookingsTable extends Migration
+class CreateCostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class AddDurationToBookingsTable extends Migration
      */
     public function up()
     {
-        Schema::table('bookings', function (Blueprint $table) {
-        $table->string('Duration');
+        Schema::create('costs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('foreigner');
+            $table->integer('local');
+            $table->integer('children');
 
+            $table->timestamps();
         });
     }
 
@@ -26,9 +30,6 @@ class AddDurationToBookingsTable extends Migration
      */
     public function down()
     {
-        Schema::table('bookings', function (Blueprint $table) {
-                    Schema::dropIfExists('bookings');
-
-        });
+        Schema::dropIfExists('costs');
     }
 }

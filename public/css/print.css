@@ -1,0 +1,10 @@
+
+    @media print{
+    .printable {
+        display:block;
+        width:100%;
+    }
+    .non_printable {
+        display:none;
+    }
+}

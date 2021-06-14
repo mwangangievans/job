@@ -22,7 +22,10 @@
 
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles1.css') }}" rel="stylesheet">
-            <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/.css') }}" rel="stylesheet">
+
+
 
 
  
@@ -68,21 +71,38 @@
                      @role('Admin')
 
                         @if (!Auth::guest())
+
+                        
                          <li><a href="{{ route('animals.index') }}"><h4 class="discover">Add Animal</h4></a></li>
                             <li><a href="{{ route('categories.index') }}"><h4 class="discover">Add  Category</h4></a></li>
                             <li><a href="{{ route('users.index') }}"><h4 class="discover">Users</h4></a></li>
                              <li><a href="{{ route('bookings.index') }}"><h4 class="discover">Bookings</h4></a></li>
 
+
                          @endif
                           @endrole
-                            @role('Staff')
 
                         @if (!Auth::guest())
+
+                          <li><a href="{{ route('costs.index') }}"><h4 class="discover">charges</h4></a></li>
+
+
+                         @role('Staff')
+                          <li><a href="{{ route('costs.index') }}"><h4 class="discover">charges</h4></a></li>
                             <li><a href="{{ route('animals.index') }}"><h4 class="discover">Add Animal</h4></a></li>
                             <li><a href="{{ route('bookings.index') }}"><h4 class="discover">Bookings</h4></a></li>
+                          @endrole
+
 
                          @endif
-                          @endrole
+                          
+                        <!-- @if (!Auth::guest())
+                            <li><a href="{{ route('animals.index') }}"><h4 class="discover">Add Animal</h4></a></li>
+                            <li><a href="{{ route('bookings.index') }}"><h4 class="discover">Bookings</h4></a></li>
+                             <li><a href="{{ route('costs.index') }}"><h4 class="discover">charges</h4></a></li>
+
+
+                         @endif -->
                           
 
                     </ul>
@@ -108,7 +128,6 @@
                                             <a href="{{ route('users.index') }}"><i class="fa fa-btn fa-unlock"></i>Admin</a>
                                         @endrole
                                         <a href="{{ route('logout') }}"
-                                        {{-- <a href="/home" --}}
 
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -146,7 +165,11 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-        <script src="{{ asset('js/welcome.js') }}"></script>
+    <script src="{{ asset('js/welcome.js') }}"></script>
+    <script src="{{ asset('js/muinde.js') }}"></script>
+    <script src="{{ asset('js/print.js') }}"></script>
+
+
 
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
