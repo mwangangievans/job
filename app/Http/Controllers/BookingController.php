@@ -157,7 +157,6 @@ class BookingController extends Controller
      */
     public function update(Request $request, $id)
     { 
-        return $id;
         $booking = Booking::where('id', $id)->first(); 
         $this->validate($request, [
             // 'user_id'         => 'required|numeric',

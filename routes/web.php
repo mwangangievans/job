@@ -15,6 +15,8 @@ use App\Category;
 */
 
 Route::get('/', function () {
+ 
+
 
 
     //          $categories = Category::all();
