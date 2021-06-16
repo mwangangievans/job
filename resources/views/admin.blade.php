@@ -20,7 +20,9 @@
                     <th >Gender</th>
                     <th >Nationality</th>
                      <th >Duration in days</th>
-                    <th class="non_printable">Action</th>
+                     <th >Charges in ksh</th>
+
+                    <th class="non_printable" >Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,7 +38,9 @@
                             <td>{{$booking->gender }}</td>
                              <td>{{$booking->nationality }}</td>
                             <td>{{$booking->Duration }}</td>
-                    <td class="non_printable">
+                            <td>{{$booking->pay }}</td>
+
+                    <td class="non_printable" id="action">
                          <button type="button" class="btn btn-primary pull-right non_printable " data-toggle="modal" data-target="#exampleModal{{$booking->id}}">
                     Edit
                     </button>

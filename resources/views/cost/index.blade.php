@@ -6,13 +6,15 @@
 
 <div class="col-lg-10 col-lg-offset-1">
   <h3 class="info">charges </h3>
-  
-<!-- Button trigger modal -->
+  @role(['Admin'])
+ @if (!Auth::guest())
+
 <button type="button" class="btn btn-primary non_printable" data-toggle="modal" data-target="#cost">
   <h4 class="non_printable">Add charges</h4>
 </button>
+ @endif
+@endrole
 
-<!-- Modal -->
 <div class="modal fade non_printable" id="cost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -62,7 +64,7 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- @if (count($costs) > 0) -->
+                @if (count($costs) > 0)
                     @foreach ( $costs as $cost)
                         <tr><td>{{$cost ->foreigner }}</td>
                             <td >{{ $cost ->local }}</td>

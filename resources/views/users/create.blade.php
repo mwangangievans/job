@@ -3,7 +3,6 @@
 @section('title', '| Add User')
 
 @section('content')
-
 <div class='col-lg-4 col-lg-offset-4'>
 
     <h1><i class='fa fa-user-plus'></i> Add User</h1>
@@ -44,11 +43,19 @@
 
     </div>
 
+    <div>
+
+
     {{ Form::submit('Add', array('class' => 'btn btn-primary')) }}
+
+   <a href="{{ URL::to('/users') }}" class="btn btn-success pull-right">back</a> 
+
+
+</div>
 
     {{ Form::close() }}
 
+
 </div>
-<button class="btn btn-primary"></button>
 
 @endsection

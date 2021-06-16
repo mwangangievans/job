@@ -34,7 +34,7 @@
                             <td>{{$booking->age}}</td>
                             <td>{{$booking->gender }}</td>
                             <td>{{$booking->Duration }}</td>
-                    <td class="non_printable">
+                    <td class="non_printable" id="action">
                          <button type="button" class="btn btn-primary pull-right non_printable " data-toggle="modal" data-target="#exampleModal{{$booking->id}}">
                     Edit
                     </button>

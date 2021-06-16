@@ -8,9 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
-        <title>BIG-LIFE-ZOO</title>
-
+    
 
     <!-- Styles -->
     <link
@@ -64,45 +62,41 @@
                     <!-- Left Side Of Navbar -->
 
                     <ul class="nav navbar-nav">
-                <!-- <li><img src="{{url('/image/lion1.webp')}}" height="70px" class="muinde" width="100px" alt="Image"/>
-</li>  -->
-
-                        <li><a href="{{ url('/') }}"><h4 class="discover">BIG-LIFE-ZOO</h4></a></li>
+ <li><a href="{{ url('/') }}"><h4 class="discover">BIG-LIFE-ZOO</h4></a></li>
                      @role('Admin')
 
                         @if (!Auth::guest())
+<li><a href="{{ route('users.index') }}"><h4 class="discover">Users</h4></a></li>
+ @endif
+                                          @endrole
 
-                        
-                         <li><a href="{{ route('animals.index') }}"><h4 class="discover">Add Animal</h4></a></li>
-                            <li><a href="{{ route('categories.index') }}"><h4 class="discover">Add  Category</h4></a></li>
-                            <li><a href="{{ route('users.index') }}"><h4 class="discover">Users</h4></a></li>
-                             <li><a href="{{ route('bookings.index') }}"><h4 class="discover">Bookings</h4></a></li>
+                    @role(['Staff','Admin'])
+                         @if (!Auth::guest())
+<li><a href="{{ route('animals.index') }}"><h4 class="discover">Add Animal</h4></a></li>
+<li><a href="{{ route('categories.index') }}"><h4 class="discover">Add  Category</h4></a></li>
+                   
 
+                                        @endif
 
-                         @endif
                           @endrole
 
                         @if (!Auth::guest())
 
-                          <li><a href="{{ route('costs.index') }}"><h4 class="discover">charges</h4></a></li>
+     <li><a href="{{ route('costs.index') }}"><h4 class="discover">charges</h4></a></li>
+     <li><a href="{{ route('bookings.index') }}"><h4 class="discover">Bookings</h4></a></li>
 
 
-                         @role('Staff')
+
+                         <!-- @role('Staff')
                           <li><a href="{{ route('costs.index') }}"><h4 class="discover">charges</h4></a></li>
                             <li><a href="{{ route('animals.index') }}"><h4 class="discover">Add Animal</h4></a></li>
                             <li><a href="{{ route('bookings.index') }}"><h4 class="discover">Bookings</h4></a></li>
-                          @endrole
+                          @endrole -->
 
 
                          @endif
                           
-                        <!-- @if (!Auth::guest())
-                            <li><a href="{{ route('animals.index') }}"><h4 class="discover">Add Animal</h4></a></li>
-                            <li><a href="{{ route('bookings.index') }}"><h4 class="discover">Bookings</h4></a></li>
-                             <li><a href="{{ route('costs.index') }}"><h4 class="discover">charges</h4></a></li>
-
-
-                         @endif -->
+                      
                           
 
                     </ul>

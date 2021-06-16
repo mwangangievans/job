@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use DateTime;
 use App\Booking;
+use App\Cost;
+use Twilio\Rest\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -32,8 +34,9 @@ class BookingController extends Controller
         } else {
 
            $user = Auth::user();
+
       
-    return view('user')->with('user',$user);
+    return view('user-booking.index')->with('user',$user);
         }
     }
     
@@ -58,7 +61,6 @@ class BookingController extends Controller
      */
     public function store(Request $request )
     {
-
          $this->validate($request, [
             // 'user_id'         => 'required|numeric',
             'phone'           => 'required|string|max:255',
@@ -84,13 +86,12 @@ class BookingController extends Controller
 
         // return $days.=" days";
         // return "Today is " . date("Y-m-d");
-
+        $costs = Cost::all();
         $booking  = new Booking();
         $date3=date_create($request->input('check_in'));
         $date2=date_create($request->input('check_out'));
         $diff=date_diff($date3,$date2);
         $day = substr($diff->format("%R%a "),1);
-
         $booking->user_id = Auth::User()->id;
         $booking ->phone =$request->input('phone');
         $booking ->gender =$request->input('gender');
@@ -99,11 +100,25 @@ class BookingController extends Controller
         $booking ->check_out=$request->input('check_out');
         $booking ->nationality =$request->input('nationality');
         $booking-> Duration = $day;
-
-                // return $day;
-
+        foreach ( $costs as $cost){
+        if($request->input('nationality')==='foreigner'){
+         if($request->input('age') < 18){
+            $sum = ((int)$day * (int)($cost ->children));
+                    }else{
+                    $sum = ((int)$day * (int)($cost->foreigner));
+                    }
+                }  
+         if($request->input('nationality')==='local'){
+            if($request->input('age') < 18){
+            $sum = ((int)$day * (int)($cost ->children));
+         }else{
+             $sum = ((int)$day * (int)($cost->local));
+         }
+        }           
+        }
+        $booking->pay=$sum;        
         $booking->save();
-
+         $this->sendMessage( 'Welcome to Big life Zoo Foundation your booking was  successful!! we are glad to have you as our visitor..your visit will last'.' '.$days.' '.'days at a cost of '.' '.$sum.' '.'ksh',$request->phone);
          return redirect()->route('bookings.index')->with('flash_message','ticket created successfully');
     }
 
@@ -130,7 +145,7 @@ class BookingController extends Controller
         
            $booking = Booking::findOrFail($id);
 
-        return view('booking.edit', compact('booking'));
+        return view('user-booking.edit', compact('booking'));
     }
 
     /**
@@ -142,6 +157,7 @@ class BookingController extends Controller
      */
     public function update(Request $request, $id)
     { 
+        return $id;
         $booking = Booking::where('id', $id)->first(); 
         $this->validate($request, [
             // 'user_id'         => 'required|numeric',
@@ -180,9 +196,7 @@ class BookingController extends Controller
      */
     public function destroy($id)
     { 
-        //  return $id;
           $booking = Booking::findOrFail($id);
-        return $booking;
         $booking->delete();
 
        ;
@@ -199,6 +213,34 @@ class BookingController extends Controller
         $days = substr($diff->format("%R%a "),1);
         return $days;
     }
+public function sendCustomMessage(Request $request)
+    {
+        $validatedData = $request->validate([
+            'users' => 'required|array',
+            'body' => 'required',
+        ]);
+        $recipients = $validatedData["users"];
+        // iterate over the array of recipients and send a twilio request for each
+        foreach ($recipients as $recipient) {
+            $this->sendMessage($validatedData["body"], $recipient);
+        }
+        return back()->with(['success' => "A text message for booking approval has been sent to your phone "]);
+    }
+    /**
+     * Sends sms to user using Twilio's programmable sms client
+     * @param String $message Body of sms
+     * @param Number $recipients Number of recipient
+     */
+    private function sendMessage($message, $recipients)
+    {
+        $booking = Booking::all();
+        $account_sid = getenv("TWILIO_SID");
+        $auth_token = getenv("TWILIO_AUTH_TOKEN");
+        $twilio_number = getenv("TWILIO_NUMBER");
+        $client = new Client($account_sid, $auth_token);
+        $client->messages->create($recipients, ['from' => $twilio_number, 'body' => $message]);
+    }
+    
 
 
 }

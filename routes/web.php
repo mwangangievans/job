@@ -36,6 +36,11 @@ Route::resource('/costs','CostController');
 
 Route::resource('/bookings','BookingController');
 
+//  Route::get('/Admin/teacher/sms', 'TwilioController@smsLecturer');
+//  Route::post('/Admin/teacher/sms', 'TwilioController@storePhoneNumber');
+//  Route::post('/Admin/teacher/custom', 'TwilioController@sendCustomMessage');
+
+
 Route::resource('/users', 'UserController');
 
 Route::resource('/categories', 'CategoryController');
