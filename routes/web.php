@@ -16,16 +16,6 @@ use App\Category;
 
 Route::get('/', function () {
  
-
-
-
-    //          $categories = Category::all();
-    //          $animals = Animal::all();
-
-
-    //      $animals = Animal::orderby('id', 'desc')->paginate(10);
-    // return view('wel', compact('animals','categories',  $categories, $animals));
-
      return view('wel');
 });
 
@@ -38,9 +28,7 @@ Route::resource('/costs','CostController');
 
 Route::resource('/bookings','BookingController');
 
-//  Route::get('/Admin/teacher/sms', 'TwilioController@smsLecturer');
-//  Route::post('/Admin/teacher/sms', 'TwilioController@storePhoneNumber');
-//  Route::post('/Admin/teacher/custom', 'TwilioController@sendCustomMessage');
+Route::resource('/groups','GroupController');
 
 
 Route::resource('/users', 'UserController');

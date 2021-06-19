@@ -448,10 +448,8 @@ font-weight: 800;    }
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  /* padding: 20px 20px; */
   transition: all 0.3s ease-in-out;}
   .jossy{
-    /* border-radius: 50%; */
     height: 200px;
     width: 200px;
     margin-left: 0px;

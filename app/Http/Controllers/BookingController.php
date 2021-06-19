@@ -156,35 +156,47 @@ class BookingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    { 
+    {
+        $costs = Cost::all();
         $booking = Booking::where('id', $id)->first(); 
         $this->validate($request, [
-            // 'user_id'         => 'required|numeric',
             'phone'           => 'required|string|max:255',
-            'gender'          => 'required|string|max:255',
-            'age'              => 'required|string|max:255',
+            'age'          => 'required|string|max:255',
             'check_in'        => 'required|date',
+            'nationality'        => 'required|string|max:255',
             'check_out'       => 'required|date',
-            'nationality'        =>'required|string|max:255'
         ]);
-
-        // $input = $request->only(['user_id', 'phone', 'gender','age','check_in','check_out']);
-        // $booking->fill($input)->save();
-        // $booking->user_id = $id;
         $booking->phone = $request->input('phone');
-        $booking->gender = $request->input('gender');
         $booking->age = $request->input('age');
         $booking->check_in = $request->input('check_in');
-        $booking->check_out = $request->input('check_out');
         $booking->nationality = $request->input('nationality');
-
-        $booking->Duration =  $this->dateDiff($request->input('check_in'),$request->input('check_out'));
+        $booking->check_out = $request->input('check_out');
+        $date3=date_create($request->input('check_in'));
+        $date2=date_create($request->input('check_out'));
+        $diff=date_diff($date3,$date2);
+        $day = substr($diff->format("%R%a "),1);
+        $booking->Duration =  $day;
+         foreach ( $costs as $cost){
+        if($request->input('nationality')==='foreigner'){
+         if($request->input('age') < 18){
+            $sum = ((int)$day * (int)($cost ->children));
+                    }else{
+                    $sum = ((int)$day * (int)($cost->foreigner));
+                    }
+                }  
+         if($request->input('nationality')==='local'){
+            if($request->input('age') < 18){
+            $sum = ((int)$day * (int)($cost ->children));
+         }else{
+             $sum = ((int)$day * (int)($cost->local));
+         }
+        }           
+        }
+        $booking->pay=$sum;        
         $booking->save();
+        $this->sendMessage( 'your booking information  of ticket number '.' '.$id.' '.'has been edited..your visit will last for '.' '.$day.' '.'days at a cost of '.' '.$sum.' '.'ksh' .' '.'you can pay via mpesa this is our the till number 345786',$request->phone);
 
-      
-        return redirect()->route('bookings.index')
-            ->with('flash_message',
-             'booking successfully updated.');
+        return redirect()->route('bookings.index')->with('flash_message','booking successfully updated.');
     }
 
     /**
@@ -195,10 +207,12 @@ class BookingController extends Controller
      */
     public function destroy($id)
     { 
+                return $id;
+
           $booking = Booking::findOrFail($id);
         $booking->delete();
 
-       ;
+       
 
         return redirect()->route('bookings.index')
             ->with('flash_message',

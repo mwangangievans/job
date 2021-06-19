@@ -60,6 +60,7 @@
                     <th>Foreigner</th>
                     <th >Local</th>
                     <th >Children</th>
+                    <th >Group</th>
                    <th class="non_printable">Action</th>
                 </tr>
             </thead>
@@ -69,6 +70,7 @@
                         <tr><td>{{$cost ->foreigner }}</td>
                             <td >{{ $cost ->local }}</td>
                             <td>{{$cost ->children}}</td>
+                            <td >{{ ($cost ->children)/2 }}</td>
                     <td class="non_printable">
                          <button type="button" class="btn btn-primary pull-right non_printable" data-toggle="modal" data-target="#exampleModal{{$cost->id}}">
                     Edit

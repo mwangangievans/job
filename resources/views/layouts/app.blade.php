@@ -70,7 +70,7 @@
  @endif
                                           @endrole
 
-                    @role(['Staff','Admin'])
+                    @role('Staff')
                          @if (!Auth::guest())
 <li><a href="{{ route('animals.index') }}"><h4 class="discover">Add Animal</h4></a></li>
 <li><a href="{{ route('categories.index') }}"><h4 class="discover">Add  Category</h4></a></li>
@@ -83,15 +83,8 @@
                         @if (!Auth::guest())
 
      <li><a href="{{ route('costs.index') }}"><h4 class="discover">charges</h4></a></li>
-     <li><a href="{{ route('bookings.index') }}"><h4 class="discover">Bookings</h4></a></li>
-
-
-
-                         <!-- @role('Staff')
-                          <li><a href="{{ route('costs.index') }}"><h4 class="discover">charges</h4></a></li>
-                            <li><a href="{{ route('animals.index') }}"><h4 class="discover">Add Animal</h4></a></li>
-                            <li><a href="{{ route('bookings.index') }}"><h4 class="discover">Bookings</h4></a></li>
-                          @endrole -->
+     <li><a href="{{ route('bookings.index') }}"><h4 class="discover">Personal-Bookings</h4></a></li>
+     <li><a href="{{ route('groups.index') }}"><h4 class="discover">Group-Bookings</h4></a></li>
 
 
                          @endif
