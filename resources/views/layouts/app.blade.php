@@ -67,6 +67,8 @@
 
                         @if (!Auth::guest())
 <li><a href="{{ route('users.index') }}"><h4 class="discover">Users</h4></a></li>
+<li><a href="{{ route('animals.index') }}"><h4 class="discover">Add Animal</h4></a></li>
+<li><a href="{{ route('categories.index') }}"><h4 class="discover">Add  Category</h4></a></li>
  @endif
                                           @endrole
 

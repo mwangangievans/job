@@ -19,7 +19,7 @@ class AnimalController extends Controller
         $name = auth()->user()->name;
 
          $animals = Animal::orderby('id', 'desc')->paginate(10);
-        return view('animal.index1', compact('animals','name','categories'));
+        return view('animal.index', compact('animals','name','categories'));
     }
     public function create()
     {

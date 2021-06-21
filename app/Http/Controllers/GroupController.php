@@ -39,10 +39,10 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        $date3=date_create($request->input('check_in'));
-        $date2=date_create($request->input('check_out'));
-        $diff=date_diff($date3,$date2);     
-        $days = substr($diff->format("%R%a "),1);
+        // $date3=date_create($request->input('check_in'));
+        // $date2=date_create($request->input('check_out'));
+        // $diff=date_diff($date3,$date2);     
+        // $days = substr($diff->format("%R%a "),1);
 
         $costs = Cost::all();
         $groups  = new Group();

@@ -12,7 +12,7 @@
             <div class="col-md-4">
               <h1>
                 <div class="image-container">
-            <img src="/storage/image/{{$animal->image}}" alt="Animal picture" class="centered-image"/>
+            <img src="/public/image/{{$animal->image}}" alt="Animal picture" class="centered-image"/>
             
                           </div>
                           <h5>
